@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.0.1/css/ngDialog.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.0.1/css/ngDialog-theme-default.min.css">
+   
+
+    
+    <title>Exercise 2</title>
+</head>
+<body ng-app="app" ng-controller="appController">
+
+    <h2>Exercise</h2>
+
+    <div>
+
+        <h3>Dialog</h3>
+        <button ng-click="openDialog()">openDialog</button>
+        <button ng-click="openExternalDialog()">Open External Dialog</button>
+        
+
+    </div>
+
+
+
+<div>
+
+<h3>Filter</h3>
+
+<span>Sort By</span> 
+
+<select ng-model="filterValue" style="margin: 10px 5px;">
+  <option value="name" selected>Name</option>
+  <option value="age">Age</option>
+  <option value="salary">Salary</option>
+</select>
+
+    <p>Click the box in the top or click the head of table</p>
+
+
+<table >
+    <thead>
+        <th ng-click="toggleSort('name')" >Name <div ng-class='toggleStyle("name")'></div></th>
+        <th ng-click="toggleSort('age')" >Age <div ng-class='toggleStyle("age")'></div> </th>
+        <th ng-click="toggleSort('salary')">Salary <div ng-class='toggleStyle("salary")'></div> </th>
+    </thead>
+
+<tbody>
+    <tr ng-repeat="cat in cats | orderBy:filterValue:reverseSort">
+        <td>
+            {{cat.name | uppercase}}
+        </td>
+        <td>
+           {{cat.age | number}}
+        </td>
+        <td>
+            {{cat.salary | currency:'₹'}}
+        </td>
+        
+    </tr>
+</tbody>
+</table>
+</div>
+
+<div>
+    <h3>Search the henchmen</h3>
+    <input type="text" ng-model="filterData" placeholder="type to search">
+    <ul>
+        <li ng-repeat="data in names| filter:filterData">{{data}}</li>
+    </ul>
+</div>
+
+<div>
+    <h3>Ajax</h3>
+
+    <div>
+        <h3>Random Fox</h3>
+        <a ng-repeat="el in apiFoxData" href={{el.link}} target="_blank">
+        <img src={{el.image}} alt="fox" style="height: 300px; width: 400px;"></a>
+    </div>
+
+    
+
+</div>
+        <div>
+            <h3>OpenWeatherApi</h3>
+            <h4>Enter the Name of a city </h4>
+            <form>
+                <input type="text" ng-model="weather">
+                <button type="submit" ng-click="weatherSearch(weather)">get weather</button>
+
+
+            </form>
+        
+
+            <ul>
+                <div ng-repeat="el in apiData">
+                         <h2>City : {{el.name}} , Country : {{el.sys.country}}</h2>
+                        <p>Humidity : {{el.main.humidity}} %</p>
+                        <p>Temperture : {{el.main.temp | celsius}}</p>
+                        <p>Feels Like : {{el.main.feels_like | celsius}}</p>
+                        <p>Pressure  : {{el.main.pressure}}</p>
+                </li>
+            </ul>
+
+        </div>
+
+
+</body>
+</html>
+<script src="./angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.0.1/js/ngDialog.min.js"></script>
+<script src="./script.js"></script>
+
+
