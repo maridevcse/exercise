@@ -77,7 +77,7 @@ app.controller('appController',['$scope','$log','$sce','$http','$sce','ngDialog'
  
     $scope.weatherSearch=(location)=>{
        $scope.apiData=[];
-       $http.get(`http://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&APPID=3d823cbee7fdad42d1bb0d81d397fc29`).then(el=>$scope.apiData.push(el.data)).catch(err=>alert(err.data.message.toUpperCase()))
+       $http.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&APPID=3d823cbee7fdad42d1bb0d81d397fc29`).then(el=>$scope.apiData.push(el.data)).catch(err=>alert(err.data.message.toUpperCase()))
        $scope.weather="";
         
     }
